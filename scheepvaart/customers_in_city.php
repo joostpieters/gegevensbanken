@@ -9,12 +9,12 @@
 	require("template/top.tpl.php");
     require_once( "gb/controller/ListCustomerInCityController.php" );
 	require_once( "gb/mapper/CustomerMapper.php" );
-	require_once( "gb/mapper/Mapper.php" );
+	
 	
 
     $filterController = new gb\controller\ListCustomerInCityController();
     $filterController->process();
-	$mapper = new \gb\mapper\CustomerMapper();
+	$mapper = new gb\mapper\CustomerMapper();
     $allCustomers = $mapper->findAll();        
     
 	?>
@@ -62,7 +62,7 @@ if(isset($_POST['formSubmit']) )
   $varCity = $_POST['citi'];
   
  
-}
+
 	
 	$filterController = new gb\controller\ListCustomerInCityController();
     $filterController->process();
@@ -78,6 +78,7 @@ if(isset($_POST['formSubmit']) )
                 <td><?php echo $customer->getCity(); ?></td>
 	</tr>     
 <?php        
+}
 }
 ?>
 </table>	

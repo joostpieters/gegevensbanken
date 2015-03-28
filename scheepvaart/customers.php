@@ -10,7 +10,7 @@
     require_once( "gb/mapper/CustomerMapper.php" );
     $mapper = new gb\mapper\CustomerMapper();//
     $allCustomer = $mapper->findAll();
-	print_r($allCustomer);
+	
 ?>
 	<table>
             <tr>

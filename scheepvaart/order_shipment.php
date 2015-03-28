@@ -59,17 +59,17 @@
     <table style="width: 100%">
         <tr>
             <td>Shipment id</td>
-            <td><input type="text" value=""></td>
+            <td><input type="text" name = "shipment_id" value=""></td>
             <td>Volume</td>
-            <td><input type="text" value=""></td>
+            <td><input type="text" name = "volume" value=""></td>
             <td>Weight</td>
-            <td><input type ="text" value = ""></td>            
+            <td><input type ="text" name = "weight" value = ""></td>            
         </tr>
         <tr>
             <td>Price</td>
-            <td><input type ="text" value = ""></td>
+            <td><input type ="text" name = "price" value = ""></td>
             <td>Date</td>
-            <td><input type="text" value=""></td>
+            <td><input type="text" name = "date" value=""></td>
             <td></td>
             <td></td>
             <td></td>            

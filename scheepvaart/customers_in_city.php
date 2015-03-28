@@ -15,7 +15,7 @@
 
     $filterController = new gb\controller\ListCustomerInCityController();
     $filterController->process();
-	$mapper = new gb\mapper\CustomerMapper();
+	$mapper = new \gb\mapper\CustomerMapper();
     $allCustomers = $mapper->findAll();        
     
 	?>
@@ -61,11 +61,14 @@
 if(isset($_POST['formSubmit']) )
 {
   $varCity = $_POST['citi'];
-  $errorMessage = "";
+  
  
 }
 	
-	$allCustomersInCity= getCustomersInCity($varCity);
+	$filterController = new gb\controller\ListCustomerInCityController();
+    $filterController->process();
+	$mapper = new \gb\mapper\CustomerMapper();
+    $allCustomersInCity = $mapper->getCustomersInCity($varCity);       
    foreach($allCustomersInCity as $customer) {
  ?>
        <tr>

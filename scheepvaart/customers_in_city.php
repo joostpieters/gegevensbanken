@@ -10,7 +10,6 @@
     require_once( "gb/controller/ListCustomerInCityController.php" );
 	require_once( "gb/mapper/CustomerMapper.php" );
 	require_once( "gb/mapper/Mapper.php" );
-	require_once( "gb/domain/Customer.php" );
 	
 
     $filterController = new gb\controller\ListCustomerInCityController();
@@ -67,7 +66,7 @@ if(isset($_POST['formSubmit']) )
 	
 	$filterController = new gb\controller\ListCustomerInCityController();
     $filterController->process();
-	$mapper = new \gb\mapper\CustomerMapper();
+	$mapper = new gb\mapper\CustomerMapper();
     $allCustomersInCity = $mapper->getCustomersInCity($varCity);       
    foreach($allCustomersInCity as $customer) {
  ?>
@@ -82,10 +81,6 @@ if(isset($_POST['formSubmit']) )
 }
 ?>
 </table>	
-<?php
-    require_once( "gb/mapper/CustomerMapper.php" );    
-    $custMapper = new gb\mapper\CustomerMapper();//
- ?>
       
 	
 

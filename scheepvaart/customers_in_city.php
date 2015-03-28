@@ -11,7 +11,7 @@
 	require_once( "gb/mapper/CustomerMapper.php" );
 	require_once( "gb/mapper/Mapper.php" );
 	require_once( "gb/domain/Customer.php" );
-	include("gb/mapper/CustomerMapper.php");
+	
 
     $filterController = new gb\controller\ListCustomerInCityController();
     $filterController->process();

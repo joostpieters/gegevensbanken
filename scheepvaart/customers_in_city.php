@@ -17,13 +17,7 @@
     $filterController->process();
 	$mapper = new gb\mapper\CustomerMapper();
     $allCustomers = $mapper->findAll();        
-    function getCustomersInCity ($city) {
-        
-        $con = $this->getConnectionManager();
-        $selectStmt = "SELECT * FROM CUSTOMER where city = ?";
-        $cities = $con->executeSelectStatement($selectStmt, array($city));        
-        return $this->getCollection($cities);
-    }
+    
 	?>
 
 <form method="post">
@@ -50,7 +44,7 @@
 					
             </select>
         </td>
-        <td style="width: 10%"><input type="submit" value="List customers in the city" name="list_customer"></td>
+        <td style="width: 10%"><input type="submit" value="List customers in the city" name="formSubmit"></td>
         <td style="width: 30%"></td>
     </tr>
 </table>    
@@ -63,7 +57,15 @@
                 <td>City</td>
             </tr>
 			<?php
-	$allCustomersInCity= getCustomersInCity($citi);
+ 
+if(isset($_POST['formSubmit']) )
+{
+  $varCity = $_POST['citi'];
+  $errorMessage = "";
+ 
+}
+	
+	$allCustomersInCity= getCustomersInCity($varCity);
    foreach($allCustomersInCity as $customer) {
  ?>
        <tr>

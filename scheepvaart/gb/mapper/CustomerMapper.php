@@ -46,7 +46,7 @@ class CustomerMapper extends Mapper {
 
     protected function doInsert( \gb\domain\DomainObject $object ) {
         $values = array( $_POST["ssn"], $_POST["first_name"], $_POST["last_name"], $_POST["street"], $_POST["number"], $_POST["bus"], $_POST["postal_code"], $_POST["city"], $_POST["mobiphone"]); 
-        self::$con-> executeInsertStatement( this->insertStmt,$values );
+        self::$con-> executeInsertStatement( $this->insertStmt,$values ); 
     }
     
     function update( \gb\domain\DomainObject $object ) {

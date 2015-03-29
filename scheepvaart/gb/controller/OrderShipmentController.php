@@ -125,7 +125,7 @@ class OrderShipmentController extends PageController {
 		$sql2 = $mysqli->query("INSERT INTO shipment (shipment_id, volume, weight)
 				VALUES ($shipment_id,$volume,$weight)");
 		
-		if (($mysqli->query($sql1) === TRUE) AND ($mysqli->query($sql1) === TRUE) {
+		if (($mysqli->query($sql1) === TRUE) AND ($mysqli->query($sql1) === TRUE)) {
 			echo "succes";
 		}
 		else {

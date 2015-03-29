@@ -86,7 +86,7 @@
         <tr>
             <td style="width: 15%">Broker name</td>
             <td colspan="5" style="width: 85%">
-                <select style="width: 50%">
+                <select style="width: 50%" name="ship_broker">
                     <?php
                     foreach($allShipBroker as $broker) {
                         echo "<option value=\"", $broker->getName(), "\">", $broker->getName(), "</option>" ;

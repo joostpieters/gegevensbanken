@@ -58,10 +58,6 @@ class OrderMapper extends Mapper {
     
     function selectAllStmt() {
         return $this->selectAllStmt;
-    }
-    
-   
+    }  
 }
-
-
 ?>

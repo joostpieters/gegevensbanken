@@ -1,8 +1,12 @@
 <?php
 namespace gb\controller;
-
+$EG_DISABLE_INCLUDES=true;
+require_once( "gb/mapper/Mapper.php" );
+require_once( "gb/domain/ShipBroker.php" );
+//require_once( "gb/mapper/Mapper.php" );
 require_once("gb/controller/PageController.php");
 require_once("gb/mapper/CustomerMapper.php" );
+
 
 class OrderShipmentController extends PageController {
     private $customer;
@@ -102,7 +106,6 @@ class OrderShipmentController extends PageController {
     }
     
     function placeShipmentOrder() {
-		//use Mysqli;
 		$shipment_id = $_POST['shipment_id'];
 		$ssn = $_POST['ssn'];
 		$ship_broker = $_POST['ship_broker'];
@@ -111,26 +114,16 @@ class OrderShipmentController extends PageController {
 		$volume = $_POST['volume'];
 		$weight = $_POST['weight'];
 		
-		$conn = "localhost";
-		$username = "root";
-		$password = "";
-		$dbname = "shipping";
-		
-		$mysqli = new Mysqli($conn,$username,$password,$dbname);
-		if ($mysqli->connect_error) {
-			die("connection failed: " .$mysqli->connect_error);
-		}
-        $sql1 = $mysqli->query("INSERT INTO orders (shipment_id, ssn, ship_broker_name, price, order_date)
-				VALUES ($shipment_id,$ssn,$ship_broker,$price,$order_date)");
-		$sql2 = $mysqli->query("INSERT INTO shipment (shipment_id, volume, weight)
-				VALUES ($shipment_id,$volume,$weight)");
-		
-		if (($mysqli->query($sql1) === TRUE) AND ($mysqli->query($sql1) === TRUE)) {
-			echo "succes";
-		}
-		else {
-			echo "error!";
-		}
+		$con = $this->getConnectionManager();
+        $insertStmt1 = "INSERT INTO orders (shipment_id, ssn, ship_broker_name, price, order_date)
+				VALUES ($shipment_id,$ssn,$ship_broker,$price,$order_date)";
+        $results1 = $con->executeInsertStatement($insertStmt1, array()); 
+		$insertStmt2 = "INSERT INTO shipment (shipment_id, volume, weight)
+				VALUES ($shipment_id,$volume,$weight)";
+		$results2 = $con->executeInsertStatement($insertStmt2, array()); 
+		return $results1;
+		return $results2;
+        
 	}
 }
 

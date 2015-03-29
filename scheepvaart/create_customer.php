@@ -59,6 +59,5 @@
 </form>    
 <?php
 	require("template/bottom.tpl.php");
-	$a = array(Customer ssn, First name, Last name, Street, Number, Bus, Mobile phone, City, Postal code);
-	array_push($a,);	
+
 ?>

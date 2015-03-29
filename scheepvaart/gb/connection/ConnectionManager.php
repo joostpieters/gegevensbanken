@@ -27,6 +27,13 @@ class ConnectionManager {
         $stmt = $this->prepareSQLStatement ($updateString);
         $stmt->execute($paras);
         return $stmt->rowCount();
+		}
+
+	function executeInsertStatement ($insertString, $paras) {
+        $stmt = $this->prepareSQLStatement ($insertString);
+        $stmt->execute($paras);
+        return $stmt->rowCount();
     }
 }
+
 ?>

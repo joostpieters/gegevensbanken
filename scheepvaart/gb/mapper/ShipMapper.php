@@ -4,15 +4,15 @@ namespace gb\mapper;
 $EG_DISABLE_INCLUDES=true;
 require_once( "gb/mapper/Mapper.php" );
 require_once( "gb/domain/Ship.php" );
-
+require_once( "gb/connection/ConnectionManager.php");
 
 class ShipMapper extends Mapper {
 
     function __construct() {
         parent::__construct();
-        $this->selectStmt = "SELECT * FROM CUSTOMER where ssn = ?";
+        $this->selectStmt = "SELECT * FROM SHIP WHERE ship_id = ?";
         $this->selectAllStmt = "SELECT * FROM SHIP ";
-        
+        $this->updateShipStmt ="UPDATE SHIP SET ship_name= ?,type= ? WHERE ship_id = ?";
     } 
     
     function getCollection( array $raw ) {
@@ -34,15 +34,15 @@ class ShipMapper extends Mapper {
         
         return $obj;
     }
-
-    protected function doInsert( \gb\domain\DomainObject $object ) {
-        
+	
+  protected function doInsert( \gb\domain\DomainObject $object ) {
+	  
     }
     
     function update( \gb\domain\DomainObject $object ) {
-        
-    }
-
+		self::$con-> executeUpdateStatement( $this-> updateShipStmt, array($_POST["ship_name"],$_POST["ship_type"],$_POST['ship_id']));
+	}
+	
     function selectStmt() {
         return $this->selectStmt;
     }

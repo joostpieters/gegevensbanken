@@ -111,26 +111,25 @@ class OrderShipmentController extends PageController {
 		$volume = $_POST['volume'];
 		$weight = $_POST['weight'];
 		
-		$servername = "localhost";
+		$conn = "localhost";
 		$username = "root";
 		$password = "";
 		$dbname = "shipping";
 		
-		$conn = new Mysqli($servername,$username,$password,$dbname);
-		if ($conn->connect_error) {
-			die("connection failed: " .$conn->connect_error);
+		$mysqli = new Mysqli($conn,$username,$password,$dbname);
+		if ($mysqli->connect_error) {
+			die("connection failed: " .$mysqli->connect_error);
 		}
-        $sql1 = "INSERT INTO orders (shipment_id, ssn, ship_broker_name, price, order_date)
-				VALUES ($shipment_id,$ssn,$ship_broker,$price,$order_date)";
-		$sql2 = "INSERT INTO shipment (shipment_id, volume, weight)
-				VALUES ($shipment_id,$volume,$weight)";
+        $sql1 = $mysqli->query("INSERT INTO orders (shipment_id, ssn, ship_broker_name, price, order_date)
+				VALUES ($shipment_id,$ssn,$ship_broker,$price,$order_date)");
+		$sql2 = $mysqli->query("INSERT INTO shipment (shipment_id, volume, weight)
+				VALUES ($shipment_id,$volume,$weight)");
 		
-		if (($conn->query($sql1) === TRUE) AND ($conn->query($sql1)) {
+		if (($mysqli->query($sql1) === TRUE) AND ($mysqli->query($sql1) === TRUE) {
 			echo "succes";
 		}
 		else {
-			echo "error: " .$sql1 . "<br>" .$conn->error;
-			echo "error: " .$sql2 . "<br>" .$conn->error;
+			echo "error!";
 		}
 	}
 }

@@ -46,7 +46,8 @@ class CustomerMapper extends Mapper {
 
     protected function doInsert( \gb\domain\DomainObject $object ) {
         $values = array( $_POST["ssn"], $_POST["first_name"], $_POST["last_name"], $_POST["street"], $_POST["number"], $_POST["bus"], $_POST["postal_code"], $_POST["city"], $_POST["mobiphone"]); 
-        self::$con-> executeInsertStatement( $this->insertStmt,$values ); 
+        // values gets inserted in the database using the executeInsertStatement
+		self::$con-> executeInsertStatement( $this->insertStmt,$values ); 
     }
     
     function update( \gb\domain\DomainObject $object ) {
@@ -61,9 +62,11 @@ class CustomerMapper extends Mapper {
     }
     
     function getCustomersInCity ($city) {
-        
+        // the connection to the database
         $con = $this->getConnectionManager();
+		// the select statement
         $selectStmt = "SELECT * FROM CUSTOMER where city = ?";
+		// $cities containts the values out of the selectStatement
         $cities = $con->executeSelectStatement($selectStmt, array($city));        
         return $this->getCollection($cities);
     }

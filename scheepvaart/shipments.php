@@ -23,6 +23,7 @@
 	foreach($allShipments as $shipment){
 ?>
 	   <tr>
+	   <!-- for every shipment we place the shipment_id, volume and the weight in a table using getters-->
 		<td><?php echo $shipment->getShipmentId(); ?></td>
 		<td><?php echo $shipment->getVolume(); ?></td>
 		<td><?php echo $shipment->getWeight(); ?></td>

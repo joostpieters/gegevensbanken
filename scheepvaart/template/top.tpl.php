@@ -24,8 +24,8 @@ session_start(); 		// -- session_start() op deze plek is niet erg netjes, maar v
     <li><a href="ship_broker_revenue.php">Ship broker revenues</a></li>
     <li><a href="ships.php">Ships</a></li>        
     <li><a href="create_customer.php">Create new customer</a></li> 
-    <li><a href="order_shipment.php">Order shipments</a></li>     
-	<li><a href="statistics.php">Statistics</a></li>	
+    <li><a href="order_shipment.php">Order shipments</a></li>    
+	<li><a href="statistics.php">Statistics</a></li>
 </ul>
 </div>
 <div class="main">

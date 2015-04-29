@@ -1,0 +1,7 @@
+Alle shipbrokers: select name from ship_broker
+Alle shipment id's: create view shipmentIds (shipment_id) as (select o.shipment_id from (shipment s, orders o) where s.shipment_id = 
+					(select shipment_id from orders where ship_broker_name = 'DHL Belgium') )
+Alle route id's: create view routeIds (route_id) as (select route_id from ships where shipment_id = shipmentIds)
+Alle to_port_code's: create view toPortCodes (to_port_code) as select to_port_code from route where routeIds = route_id
+Alle country id's: create view countryIds (country_id) as select country_id from port where port_code = toPortCodes
+Alle country's: select country_name from country where 	country_id = countryIds

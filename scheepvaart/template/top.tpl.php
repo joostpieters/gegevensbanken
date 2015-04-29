@@ -18,15 +18,14 @@ session_start(); 		// -- session_start() op deze plek is niet erg netjes, maar v
 <ul>
 	<li><a href="index.php">Home</a></li>
 	<li><a href="customers.php">Customers</a></li>
-        <li><a href="shipments.php">Shipments</a></li>        
-        <li><a href="orders.php">Orders</a></li>
-        <li><a href="customers_in_city.php">Customers in cities</a></li>               
-        <li><a href="ship_broker_revenue.php">Ship broker revenues</a></li>
-        <li><a href="ships.php">Ships</a></li>        
-        <li><a href="create_customer.php">Create new customer</a></li> 
-        <li><a href="order_shipment.php">Order shipments</a></li>        
-        
-	
+    <li><a href="shipments.php">Shipments</a></li>        
+    <li><a href="orders.php">Orders</a></li>
+    <li><a href="customers_in_city.php">Customers in cities</a></li>               
+    <li><a href="ship_broker_revenue.php">Ship broker revenues</a></li>
+    <li><a href="ships.php">Ships</a></li>        
+    <li><a href="create_customer.php">Create new customer</a></li> 
+    <li><a href="order_shipment.php">Order shipments</a></li>     
+	<li><a href="statistics.php">Statistics</a></li>	
 </ul>
 </div>
 <div class="main">

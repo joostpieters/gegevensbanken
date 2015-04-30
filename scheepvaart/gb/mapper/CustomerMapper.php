@@ -70,9 +70,6 @@ class CustomerMapper extends Mapper {
         $cities = $con->executeSelectStatement($selectStmt, array($city));        
         return $this->getCollection($cities);
     }
-	
-	
-
 }
 
 

@@ -6,4 +6,19 @@ create view routetrip(shipment_id, ssn, shipbroker_name, price, order_date, rout
 
 create view portroute (shipment_id, ssn, shipbroker_name, price, order_date, route_id, departure_date, arrival_date, to_port_code, country_id) as select shipment_id, ssn, shipbroker_name, price, order_date, route_id, departure_date, arrival_date, to_port_code, country_id from routetrip r join port p on port_code=to_port_code;
 
-create view allNeedableData (shipment_id, ssn, shipbroker_name, price, order_date, route_id, departure_date, arrival_date, to_port_code, country_name) as select shipment_id, ssn, shipbroker_name, price, order_date, route_id, departure_date, arrival_date, to_port_code, country_name from portroute natural join country;
+create view allNeededData (shipment_id, ssn, shipbroker_name, price, order_date, route_id, departure_date, arrival_date, to_port_code, country_name) as select shipment_id, ssn, shipbroker_name, price, order_date, route_id, departure_date, arrival_date, to_port_code, country_name from portroute natural join country;
+
+aantal klanten: select count(distinct ssn) as number_unique_clients, shipbroker_name from allNeededData group by shipbroker_name;
+
+aantal orders: select count(distinct shipment_id) as number_of_orders, shipbroker_name from allNeededData group by shipbroker_name;
+
+aantal orders naar een land:select count(country_name) as number_of_orders_to_country, country_name, shipbroker_name from allNeededData group by country_name, shipbroker_name;
+
+duur van vertrek to aankomst: select DATEDIFF(arrival_date, departure_date) as average_shipping_time, shipbroker_name from allNeededData group by shipbroker_name;
+
+duur van bestelling to aankomst: select DATEDIFF(arrival_date, order_date) as average_total_time, shipbroker_name from allNeededData group by shipbroker_name;
+
+percentage shipments:select shipbroker_name, (Count(shipment_id)* 100 /(select Count(*) from allNeededData)) as percentage_of_shipments from allNeededData group by shipbroker_name;
+
+
+

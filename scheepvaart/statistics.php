@@ -11,28 +11,36 @@
 	$mapper = new gb\mapper\StatisticsMapper();
 	$allShipments = $mapper->findAll();
 ?>
-
-	<table>
-		<tr>
-			<td>Shipment id</td>
-			<td>Volume</td>
-			<td>Weight</td>        
-		</tr>
-   
-<?php
-	foreach($allShipments as $shipment){
-?>
-	   <tr>
-	   <!-- for every shipment we place the shipment_id, volume and the weight in a table using getters-->
-		<td><?php echo $shipment->getShipmentId(); ?></td>
-		<td><?php echo $shipment->getVolume(); ?></td>
-		<td><?php echo $shipment->getWeight(); ?></td>
-      
-	</tr>	
-<?php        
-}
-?>
-</table>
+<tr>
+        <td colspan="6">Shipbroker information</td>
+</tr>
+<tr>
+    <td colspan="6">
+    <table style="width: 100%">
+        <tr>
+            <td style="width: 15%">Broker name</td>
+            <td colspan="5" style="width: 85%">
+                <select style="width: 50%" name="searchShipBroker">
+                    <?php
+                    foreach($allShipBroker as $broker) {
+                        echo "<option value=\"", $broker->getName(), "\">", $broker->getName(), "</option>" ;
+                    }                    
+                    ?>      
+                </select>
+            </td>            
+        </tr>        
+    </table>
+    </td>    
+</tr>
+<tr>
+    <td >&nbsp;</td>
+    <td >&nbsp;</td>
+    <td >&nbsp;</td>
+    <td><input type ="submit" name="searchShipBroker" value="searchShipBroker" ></td>
+    <td >&nbsp;</td>
+    <td >&nbsp;</td>
+</tr>
+	
 <?php
 	require("template/bottom.tpl.php");
 ?>

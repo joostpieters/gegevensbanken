@@ -24,8 +24,8 @@
                     <?php
                     foreach($allShipBroker as $broker) {
                         echo "<option value=\"", $broker->getName(), "\">", $broker->getName(), "</option>" ;
-                    }                    
-                    ?>      
+                    }
+                    ?>
                 </select>
             </td>            
         </tr>        
@@ -40,7 +40,10 @@
     <td >&nbsp;</td>
     <td >&nbsp;</td>
 </tr>
-	
+<?php
+	$numberOfCustomers->getNumberOfCustomers();
+	print "The number of customers in the database is: $numberOfCustomers";
+?>	
 <?php
 	require("template/bottom.tpl.php");
 ?>

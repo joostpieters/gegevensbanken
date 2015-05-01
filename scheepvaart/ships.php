@@ -11,13 +11,12 @@
             <tr><td>Ship id</td><td>Ship name</td><td>type</td></tr>
 <?php
     require_once( "gb/mapper/ShipMapper.php" );
-    $mapper = new gb\mapper\ShipMapper();
-	// $allShip contains every ship
+    $mapper = new gb\mapper\ShipMapper();//
     $allShip = $mapper->findAll();
     foreach($allShip as $ship) {
  ?>
        <tr>
-        <td><a href = 'update_ship.php?ship_id=<?php echo $ship->getShipId(); ?>&type=<?php echo $ship->getType(); ?>&name=<?php echo $ship->getShipName(); ?>'><?php echo $ship->getShipId(); ?></td>
+           <td><a href = 'update_ship.php?ship_id=<?php echo $ship->getShipId(); ?>&type=<?php echo $ship->getType(); ?>&name=<?php echo $ship->getShipName(); ?>'><?php echo $ship->getShipId(); ?></td>
 		<td><?php echo $ship->getShipName(); ?></td>
 		<td><?php echo $ship->getType(); ?></td>                
 	</tr>     

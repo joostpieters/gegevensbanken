@@ -9,7 +9,6 @@
 	
 	require_once( "gb/mapper/OrderMapper.php" );
     $mapper = new gb\mapper\OrderMapper();
-	// $allOrders contains every order in the database
     $allOrders = $mapper->findAll();
 ?>
 <table>
@@ -24,7 +23,6 @@
     foreach($allOrders as $order) {
  ?>
        <tr>
-	   <!-- for every order we place shipment_id, ssn, shipBrokerName, price and the orderDate in a table using getters-->
 		<td><?php echo $order->getShipmentId(); ?></td>
 		<td><?php echo $order->getSsn(); ?></td>
 		<td><?php echo $order->getShipBrokerName(); ?></td>

@@ -5,7 +5,6 @@
 	// algemene pagina lay-out en het menu.
 	require("template/top.tpl.php");
 	require_once( "gb/mapper/ShipBrokerMapper.php" );
-	// every revenue of all the ship brokers
     $mapper = new gb\mapper\ShipBrokerMapper();
 	
  ?>
@@ -26,10 +25,9 @@ $result = $mapper->getShipBrokerRevenues();
 
 
 foreach($result as $revenue){
-	// all the shipbroker revenues	
+	
 	?>
        <tr>
-	   
 		<td><?php echo $revenue['name']; ?></td>		
 		<td><?php echo $revenue['depart']; ?></td>
         <td><?php echo $revenue['arrival']; ?></td>

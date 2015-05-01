@@ -106,7 +106,6 @@ class OrderShipmentController extends PageController {
     }
     
     function placeShipmentOrder() {
-		// we use $_POST to get the values the user has given us on the html form
 		$shipment_id = $_POST['shipment_id'];
 		$ssn = $_POST['ssn'];
 		$ship_broker = $_POST['ship_broker'];
@@ -116,7 +115,6 @@ class OrderShipmentController extends PageController {
 		$weight = $_POST['weight'];
 		
 		$con = $this->getConnectionManager();
-		// we use executeInsertStatement (from connectionmanager) to insert the new data into orders
         $insertStmt1 = "INSERT INTO orders (shipment_id, ssn, ship_broker_name, price, order_date)
 				VALUES ($shipment_id,$ssn,$ship_broker,$price,$order_date)";
         $results1 = $con->executeInsertStatement($insertStmt1, array()); 

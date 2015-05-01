@@ -14,7 +14,6 @@
     $orderController->process();
     
     $mapper = new gb\mapper\ShipBrokerMapper();
-	// all the shipbrokers
     $allShipBroker = $mapper->findAll();    
 ?>    
 <form method="post">
@@ -59,7 +58,6 @@
     <td colspan="6">
     <table style="width: 100%">
         <tr>
-			<!-- name = " " will afterwards let us get the value given in the form-->
             <td>Shipment id</td>
             <td><input type="text" name = "shipment_id" value=""></td>
             <td>Volume</td>

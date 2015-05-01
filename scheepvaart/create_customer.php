@@ -17,7 +17,6 @@
 <tr>
     <td colspan="6">
     <table style="width: 100%">
-		<!-- we use name = " " to get the new date given in the form afterwards (with $_POST)
         <tr>
             <td>Customer ssn</td>
             <td><input type="text" value="" name="ssn"></td>

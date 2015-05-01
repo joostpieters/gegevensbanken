@@ -8,12 +8,13 @@
 	// algemene pagina lay-out en het menu.
 	require("template/top.tpl.php");
     require_once( "gb/controller/ListCustomerInCityController.php" );
-	require_once( "gb/mapper/CustomerMapper.php" );	
+	require_once( "gb/mapper/CustomerMapper.php" );
+	
+	
 
     $filterController = new gb\controller\ListCustomerInCityController();
     $filterController->process();
 	$mapper = new gb\mapper\CustomerMapper();
-	// $allCustomers contains every customer 
     $allCustomers = $mapper->findAll();        
     
 	?>
@@ -27,17 +28,18 @@
         <td style="width: 40%">
             <select style="width: 100%" name="citi">
 			<?php
-					// we use the array $cities to get every city that we already got
 					$cities = array();
                     foreach($allCustomers as $customer) {
 						if(!in_array($customer->getCity(), $cities)){
-							// if we didn't came across this specific city yes, we push it in $cities
 							array_push($cities, $customer->getCity() );
 							echo "<option value=\"", $customer->getCity(), "\">", $customer->getCity(), "</option>" ;
 						}
                     }
                     
                     ?> 
+		
+
+
 					
             </select>
         </td>
@@ -57,19 +59,18 @@
  
 if(isset($_POST['formSubmit']) )
 {
-	// the city the user had chosen in the html form
-	$varCity = $_POST['citi']; 
+  $varCity = $_POST['citi'];
+  
+ 
 
 	
 	$filterController = new gb\controller\ListCustomerInCityController();
     $filterController->process();
 	$mapper = new gb\mapper\CustomerMapper();
-	// $allCustomersInCity contains every customer in $varCity (citi) 
     $allCustomersInCity = $mapper->getCustomersInCity($varCity);       
    foreach($allCustomersInCity as $customer) {
  ?>
        <tr>
-	   <!-- this table contains the ssn, first name, last name, adress and city of every customer in citi
 		<td><?php echo $customer->getSsn(); ?></td>
 		<td><?php echo $customer->getFirstName(); ?></td>
 		<td><?php echo $customer->getLastName(); ?></td>
@@ -80,7 +81,11 @@ if(isset($_POST['formSubmit']) )
 }
 }
 ?>
-</table>
+</table>	
+      
+	
+
+
     
 </form>    
 <?php

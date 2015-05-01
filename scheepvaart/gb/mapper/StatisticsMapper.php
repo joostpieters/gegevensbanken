@@ -4,10 +4,14 @@ namespace gb\mapper;
 $EG_DISABLE_INCLUDES=true;
 require_once( "gb/mapper/Mapper.php" );
 <<<<<<< HEAD
+<<<<<<< HEAD
 require_once( "gb/domain/statistics.php" );
 =======
 require_once( "gb/domain/Customer.php" );
 >>>>>>> dc5663a0642787a9ee722784990be6f82b236702
+=======
+require_once( "gb/domain/Statistics.php" );
+>>>>>>> parent of 1e3635b... ljfldj
 
 
 class StatisticsMapper extends Mapper {

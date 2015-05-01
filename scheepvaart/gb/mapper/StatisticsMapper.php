@@ -3,7 +3,7 @@ namespace gb\mapper;
 
 $EG_DISABLE_INCLUDES=true;
 require_once( "gb/mapper/Mapper.php" );
-require_once( "gb/domain/Statistics.php" );
+require_once( "gb/domain/statistics.php" );
 
 
 class StatisticsMapper extends Mapper {

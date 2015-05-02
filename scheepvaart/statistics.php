@@ -11,6 +11,12 @@
 	$mapper = new gb\mapper\StatisticsMapper();
 	$allShipments = $mapper->findAll();
 ?>
+<table>
+    <tr>
+        <td>Shipbroker name</td>
+        <td>Number of clients</td>
+    </tr>
+<!--	
 <tr>
         <td colspan="6">Shipbroker information</td>
 </tr>
@@ -22,9 +28,9 @@
             <td colspan="5" style="width: 85%">
                 <select style="width: 50%" name="searchShipBroker">
                     <?php
-                    foreach($allShipBroker as $broker) {
+                    /*foreach($allShipBroker as $broker) {
                         echo "<option value=\"", $broker->getName(), "\">", $broker->getName(), "</option>" ;
-                    }
+                    }*/
                     ?>
                 </select>
             </td>            
@@ -40,11 +46,27 @@
     <td >&nbsp;</td>
     <td >&nbsp;</td>
 </tr>
+-->
 <?php
-	$numberOfCustomers->getNumberOfCustomers();
-	print "The number of customers in the database is: $numberOfCustomers";
-?>	
-<?php
-	require("template/bottom.tpl.php");
+
+
+$mapper = new gb\mapper\StatisticsMapper();
+$result = $mapper->getNumberOfCustomers();
+
+
+foreach($result as $revenue){
+	
+	?>
+       <tr>
+		<td><?php echo $revenue['shipbroker_name']; ?></td>		
+		<td><?php echo $revenue['number_unique_clients']; ?></td>
+	</tr>     
+<?php        
+	}
 ?>
 
+</table>
+<?php
+
+	require("template/bottom.tpl.php");
+?>

@@ -7,13 +7,13 @@
 	// Voer de inhoud van "top.inc.php" uit. Deze verzorgt de
 	// algemene pagina lay-out en het menu.
 	require("template/top.tpl.php");
-    require_once( "gb/controller/ListCustomerInCityController.php" );
+    //require_once( "gb/controller/ListCustomerInCityController.php" );
 	require_once( "gb/mapper/CustomerMapper.php" );
 	
 	
 
-    $filterController = new gb\controller\ListCustomerInCityController();
-    $filterController->process();
+    //$filterController = new gb\controller\ListCustomerInCityController();
+    //$filterController->process();
 	$mapper = new gb\mapper\CustomerMapper();
     $allCustomers = $mapper->findAll();        
     
@@ -64,8 +64,8 @@ if(isset($_POST['formSubmit']) )
  
 
 	
-	$filterController = new gb\controller\ListCustomerInCityController();
-    $filterController->process();
+	//$filterController = new gb\controller\ListCustomerInCityController();
+    //$filterController->process();
 	$mapper = new gb\mapper\CustomerMapper();
     $allCustomersInCity = $mapper->getCustomersInCity($varCity);       
    foreach($allCustomersInCity as $customer) {

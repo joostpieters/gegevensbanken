@@ -23,13 +23,12 @@
 				<option value="2">Number of delivered orders</options>
 				<option value="3">The time from order to arrival</options>
 				<option value="4">Number of delivered orders to a country</options>
-		
-
-
+				<option value="5">City of the ShipBroker</options>
+				<option value="6">Used ships</options>
 					
             </select>
         </td>
-        <td style="width: 10%"><input type="submit" value="List customers in the city" name="formSubmit"></td>
+        <td style="width: 10%"><input type="submit" value="Select" name="formSubmit"></td>
         <td style="width: 30%"></td>
     </tr>
 
@@ -138,6 +137,55 @@ foreach($result as $revenue){
        <tr>
 		<td><?php echo $revenue['shipbroker_name']; ?></td>		
 		<td><?php echo $revenue['average_total_time']; ?></td>
+	</tr>     
+<?php        
+	}
+}
+
+if($search=='5'){
+?>
+<tr>
+        <td>Ship broker name</td>
+        <td>Street</td>
+		<td>Number</td>
+		<td>Bus</td>
+		<td>Postal Code</td>
+		<td>City</td>
+    </tr>
+<?php
+
+$mapper = new gb\mapper\StatisticsMapper();
+$result = $mapper->getShipBrokerAdress();
+
+foreach($result as $revenue){	
+	?>
+       <tr>
+		<td><?php echo $revenue['shipbroker_name']; ?></td>	
+		<td><?php echo $revenue['street_of_shipbroker']; ?></td>
+		<td><?php echo $revenue['number_of_shipbroker']; ?></td>
+		<td><?php echo $revenue['bus_of_shipbroker']; ?></td>
+		<td><?php echo $revenue['postal_code_of_shipbroker']; ?></td>			
+		<td><?php echo $revenue['city_of_shipbroker']; ?></td>
+	</tr>     
+<?php        
+	}
+}
+if($search=='6'){
+?>
+<tr>
+        <td>Ship broker name</td>
+        <td>Ship Name</td>
+    </tr>
+<?php
+
+$mapper = new gb\mapper\StatisticsMapper();
+$result = $mapper->getShips();
+
+foreach($result as $revenue){	
+	?>
+    <tr>
+		<td><?php echo $revenue['shipbroker_name']; ?></td>	
+		<td><?php echo $revenue['shipName']; ?></td>
 	</tr>     
 <?php        
 	}

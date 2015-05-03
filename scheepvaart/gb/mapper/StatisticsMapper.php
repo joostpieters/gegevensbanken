@@ -88,6 +88,22 @@ class StatisticsMapper extends Mapper {
         return $numbers;
 	}
 	
+	function getShipBrokerAdress() {
+		$con = $this->getConnectionManager();
+		$selectStmt = "select city as city_of_shipbroker, street as street_of_shipbroker, number as number_of_shipbroker, bus as bus_of_shipbroker, postal_code as postal_code_of_shipbroker, shipbroker_name from ship_broker group by shipbroker_name";
+		$citi = $con->executeSelectStatement($selectStmt, array());        
+        return $citi;
+	}
+	
+	function getShips(){
+		"create view ordersships(shipment_id, ssn, shipbroker_name, price, order_date, route_id, ship_id, departure_date) as select shipment_id, ssn, ship_broker_name, price, order_date, o.route_id, ship_id, departure_date from orders o natural join ships s";
+		"create view routeships(shipment_id, ssn, shipbroker_name, price, order_date, route_id,ship_id, departure_date, to_port_code) as select shipment_id, ssn, shipbroker_name, price, order_date, o.route_id, ship_id, departure_date, to_port_code from ordersships o natural join route r";
+		$con = $this->getConnectionManager();
+		$selectStmt = "select ship_name as shipName, shipbroker_name from ship s, routeships r where s.ship_id = r.ship_id group by shipbroker_name";
+		$ships = $con->executeSelectStatement($selectStmt, array());        
+        return $ships;
+	}
+	
 	
 
 }

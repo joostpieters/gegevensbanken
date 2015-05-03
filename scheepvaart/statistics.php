@@ -61,26 +61,56 @@ foreach($result as $revenue){
 
 if($search=='2'){
 ?>
-<tr>
-        <td>Ship broker name</td>
-        <td>Number of orders</td>
-    </tr>
 <?php
 
 $mapper = new gb\mapper\StatisticsMapper();
 $result = $mapper->getNumberOfOrders();
-
-
-foreach($result as $revenue){
+?>
+<html>
+  <head>
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+    
+      // Load the Visualization API and the barchart package.
+	  google.load('visualization', '1', {packages: ['corechart', 'bar']});
 	
-	?>
-       <tr>
-		<td><?php echo $revenue['shipbroker_name']; ?></td>		
-		<td><?php echo $revenue['number_of_orders']; ?></td>
-	</tr>     
-<?php        
-	}
-}
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.setOnLoadCallback(drawBasic);
+
+
+      // Callback that creates and populates a data table, 
+      // instantiates the barchart, passes in the data and
+      // draws it.
+      function drawBasic() {
+
+      // Create the data table.
+      var data = google.visualization.arrayToDataTable(<?php $result?>) //OFZOIETS, geen idee wat ik doe, tkan zijn da da ni in php moe
+
+      // Set chart options
+      var options = {title: 'Number of customers for each shipbroker',				
+					chartArea: {width: '50%'},
+					hAxis: {
+					title: 'Number of customers',
+					minValue: 0
+					},
+					vAxis: {
+					title: 'shipbroker'
+					}};
+
+      // Instantiate and draw our chart, passing in some options.
+      var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+      chart.draw(data, options);
+    }
+    </script>
+  </head>
+
+  <body>
+<!--Div that will hold the pie chart-->
+    <div id="chart_div" style="width:400; height:300"></div>
+  </body>
+</html>
+
 if($search=='3'){
 ?>
 <tr>

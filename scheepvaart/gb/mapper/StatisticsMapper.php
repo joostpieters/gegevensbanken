@@ -62,7 +62,13 @@ class StatisticsMapper extends Mapper {
 		$con = $this->getConnectionManager();
 		$selectStmt = "select count(distinct ssn) as number_unique_clients, shipbroker_name from portcountry group by shipbroker_name order by number_unique_clients desc";
 		$numbers = $con->executeSelectStatement($selectStmt, array());        
-        return $numbers;
+        $titleForChart = array("shipbroker_name", "number_unique_clients");
+		$data[0] = $titleForChart;		
+		for ($i=1; $i<($numbers+1); $i++)
+    {
+        $data[$i] = $numbers[$i-1];
+    }	
+		return $data;
 	}
 	function getNumberOfOrders(){
 		"create view ordersships(shipment_id, ssn, shipbroker_name, price, order_date, route_id, ship_id, departure_date) as select shipment_id, ssn, ship_broker_name, price, order_date, o.route_id, ship_id, departure_date from orders o natural join ships s";

@@ -60,13 +60,12 @@ foreach($result as $revenue){
 }
 
 if($search=='2'){
-?>
-<?php
+
 
 $mapper = new gb\mapper\StatisticsMapper();
 $result = $mapper->getNumberOfOrders();
 ?>
-<html>
+  <html>
   <head>
     <!--Load the AJAX API-->
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
@@ -100,8 +99,12 @@ $result = $mapper->getNumberOfOrders();
 
       // Instantiate and draw our chart, passing in some options.
       var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
-      chart.draw(data, options);
+      chart.draw(data, options); 
+	  <?php 
     }
+
+
+?>
     </script>
   </head>
 
@@ -110,7 +113,7 @@ $result = $mapper->getNumberOfOrders();
     <div id="chart_div" style="width:400; height:300"></div>
   </body>
 </html>
-
+<?php
 if($search=='3'){
 ?>
 <tr>
@@ -221,6 +224,7 @@ foreach($result as $revenue){
 	}
 }
 }
+
 ?>
 
 

@@ -138,11 +138,6 @@ foreach($result as $revenue){
 }
 if($search=='4'){
 	require_once( "gb/mapper/CustomerMapper.php" );
-	
-	
-
-    //$filterController = new gb\controller\ListCustomerInCityController();
-    //$filterController->process();
 	$mapper = new gb\mapper\CustomerMapper();
     $allCustomers = $mapper->findAll();
 ?>
@@ -164,12 +159,12 @@ if($search=='4'){
             </select>
 <tr>
         <td>Ship broker name</td>
-        <td>Time (in days)</td>
+        <td>Number of orders to this city</td>
     </tr>
 <?php
 
 $mapper = new gb\mapper\StatisticsMapper();
-$result = $mapper->getUnderwayTime();
+$result = $mapper->getO();
 
 
 foreach($result as $revenue){
@@ -215,7 +210,7 @@ if($search=='6'){
 ?>
 <tr>
         <td>Ship broker name</td>
-        <td>Ship Name</td>
+        <td>Number of used ships</td>
     </tr>
 <?php
 
@@ -226,7 +221,7 @@ foreach($result as $revenue){
 	?>
     <tr>
 		<td><?php echo $revenue['shipbroker_name']; ?></td>	
-		<td><?php echo $revenue['shipName']; ?></td>
+		<td><?php echo $revenue['number_of_ships']; ?></td>
 	</tr>     
 <?php        
 	}

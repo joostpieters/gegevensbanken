@@ -63,13 +63,7 @@ class StatisticsMapper extends Mapper {
 		$selectStmt = "select count(distinct ssn) as number_unique_clients, shipbroker_name from portcountry group by shipbroker_name order by number_unique_clients desc";
 		$numbers = $con->executeSelectStatement($selectStmt, array());        
         return $numbers;
-		/*$titleForChart = array("shipbroker_name", "number_unique_clients");
-		 $data[0] = $titleForChart;		
-		for ($i=1; $i<($numbers+1); $i++)
-    {
-        $data[$i] = $numbers[$i-1];
-    }	
-		return $data; */
+		 
 	}
 	function getNumberOfOrders(){
 		"create view ordersships(shipment_id, ssn, shipbroker_name, price, order_date, route_id, ship_id, departure_date) as select shipment_id, ssn, ship_broker_name, price, order_date, o.route_id, ship_id, departure_date from orders o natural join ships s";
@@ -81,6 +75,13 @@ class StatisticsMapper extends Mapper {
 		$selectStmt = "select count(distinct shipment_id) as number_of_orders, shipbroker_name from portcountry group by shipbroker_name order by number_of_orders desc";
 		$numbers = $con->executeSelectStatement($selectStmt, array());        
         return $numbers;
+		$titleForChart = array("shipbroker_name", "number_unique_clients");
+		 $data[0] = $titleForChart;		
+		for ($i=1; $i<($numbers+1); $i++)
+    {
+        $data[$i] = $numbers[$i-1];
+    }	
+		return $data;
 	}
 	
 	function getUnderwayTime(){
@@ -97,7 +98,7 @@ class StatisticsMapper extends Mapper {
 	
 	function getShipBrokerAdress() {
 		$con = $this->getConnectionManager();
-		$selectStmt = "select city as city_of_shipbroker, street as street_of_shipbroker, number as number_of_shipbroker, bus as bus_of_shipbroker, postal_code as postal_code_of_shipbroker, shipbroker_name from ship_broker group by shipbroker_name";
+		$selectStmt = "select city as city_of_shipbroker, street as street_of_shipbroker, number as number_of_shipbroker, bus as bus_of_shipbroker, postal_code as postal_code_of_shipbroker, name from ship_broker group by name";
 		$citi = $con->executeSelectStatement($selectStmt, array());        
         return $citi;
 	}
@@ -106,7 +107,19 @@ class StatisticsMapper extends Mapper {
 		"create view ordersships(shipment_id, ssn, shipbroker_name, price, order_date, route_id, ship_id, departure_date) as select shipment_id, ssn, ship_broker_name, price, order_date, o.route_id, ship_id, departure_date from orders o natural join ships s";
 		"create view routeships(shipment_id, ssn, shipbroker_name, price, order_date, route_id,ship_id, departure_date, to_port_code) as select shipment_id, ssn, shipbroker_name, price, order_date, o.route_id, ship_id, departure_date, to_port_code from ordersships o natural join route r";
 		$con = $this->getConnectionManager();
-		$selectStmt = "select ship_name as shipName, shipbroker_name from ship s, routeships r where s.ship_id = r.ship_id group by shipbroker_name";
+		$selectStmt = "select shipbroker_name, count(distinct s.ship_id) as number_of_ships from ship s, routeships r where s.ship_id = r.ship_id group by shipbroker_name";
+		$ships = $con->executeSelectStatement($selectStmt, array());        
+        return $ships;
+	}
+	function getOrdersToCity(){
+		"create view ordersships(shipment_id, ssn, shipbroker_name, price, order_date, route_id, ship_id, departure_date) as select shipment_id, ssn, ship_broker_name, price, order_date, o.route_id, ship_id, departure_date from orders o natural join ships s";
+		"create view routeships(shipment_id, ssn, shipbroker_name, price, order_date, route_id,ship_id, departure_date, to_port_code) as select shipment_id, ssn, shipbroker_name, price, order_date, o.route_id, ship_id, departure_date, to_port_code from ordersships o natural join route r";
+		"create view routetrip(shipment_id, ssn, shipbroker_name, price, order_date, route_id, departure_date, arrival_date, to_port_code) as select shipment_id, ssn, shipbroker_name, price, order_date, r.route_id, r.departure_date, arrival_date, to_port_code from routeships r join trip t on (r.route_id=t.route_id and r.ship_id = t.ship_id and r.departure_date=t.departure_date)";
+		"create view portroute (shipment_id, ssn, shipbroker_name, price, order_date, route_id, departure_date, arrival_date, to_port_code, country_id) as select shipment_id, ssn, shipbroker_name, price, order_date, route_id, departure_date, arrival_date, to_port_code, country_id from routetrip r join port p on port_code=to_port_code";
+		"create view portcountry (shipment_id, ssn, shipbroker_name, price, order_date, route_id, departure_date, arrival_date, to_port_code, country_name) as select shipment_id, ssn, shipbroker_name, price, order_date, route_id, departure_date, arrival_date, to_port_code, country_name from portroute natural join country";
+		"create view shipbrokercountry(shipment_id, ssn, shipbroker_name, price, order_date, route_id, departure_date, arrival_date, to_port_code, country_name, city) as select shipment_id, ssn, shipbroker_name, price, order_date, route_id, departure_date, arrival_date, to_port_code, country_name, city from portcountry p join ship_broker s on p.shipbroker_name=s.name";
+		$con = $this->getConnectionManager();
+		$selectStmt = "select shipbroker_name,  from shipbrokercountry where s.ship_id = r.ship_id group by shipbroker_name";
 		$ships = $con->executeSelectStatement($selectStmt, array());        
         return $ships;
 	}

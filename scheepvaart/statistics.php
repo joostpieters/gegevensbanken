@@ -118,29 +118,9 @@ foreach($result as $revenue){
 
 if($search=='4'){
 	header('Location: orders_to_port.php');  
-?>
-					
-            </select>
-<tr>
-        <td>Ship broker name</td>
-        <td>Number of orders to this city</td>
-    </tr>
-<?php
-
-$mapper = new gb\mapper\StatisticsMapper();
-$result = $mapper->getO();
-
-
-foreach($result as $revenue){
-	
-	?>
-       <tr>
-		<th><?php echo $revenue['shipbroker_name']; ?></th>		
-		<th><?php echo $revenue['average_total_time']; ?></th>
-	</tr>     
-<?php        
-	}
 }
+					
+            
 if($search=='5'){
 ?>
 <tr>

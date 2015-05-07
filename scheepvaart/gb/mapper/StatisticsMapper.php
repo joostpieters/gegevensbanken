@@ -139,7 +139,7 @@ class StatisticsMapper extends Mapper {
 	function getTotalPrice(){
 		"create view ordersships(shipment_id, ssn, shipbroker_name, price, order_date, route_id, ship_id, departure_date) as select shipment_id, ssn, ship_broker_name, price, order_date, o.route_id, ship_id, departure_date from orders o natural join ships s";
 		$con = $this->getConnectionManager();
-		$selectStmt = "select sum(price) as totalPrice, shipbroker_name from ordersships";
+		$selectStmt = "select sum(price) as totalPrice, shipbroker_name from ordersships group by shipbroker_name order by totalPrice desc";
 		$totalPrice = $con->executeSelectStatement($selectStmt, array());        
         return $totalPrice;
 	}

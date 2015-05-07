@@ -150,7 +150,7 @@ $result = $mapper->getShipBrokerAdress();
 foreach($result as $revenue){	
 	?>
        <tr>
-		<td><?php echo $revenue['shipbroker_name']; ?></td>	
+		<td><?php echo $revenue['name']; ?></td>	
 		<td><?php echo $revenue['street_of_shipbroker']; ?></td>
 		<td><?php echo $revenue['number_of_shipbroker']; ?></td>
 		<td><?php echo $revenue['bus_of_shipbroker']; ?></td>

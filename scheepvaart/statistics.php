@@ -40,14 +40,7 @@
 <?php
 if(isset($_POST['submit']))
 {
-	$search = $_POST['searchCriterium'];
-if($search=='4'){
-		?>
-		
-	<?php
-		}
-		
-	
+	$search = $_POST['searchCriterium'];	
 if($search=='1'){
 ?>
 <tr>
@@ -76,7 +69,6 @@ if($search=='2'){
 
 $mapper = new gb\mapper\StatisticsMapper();
 $result = $mapper->getNumberOfOrders();
-
 	$chart = new HorizontalBarChart(800, 500);
 	$dataSet = new XYDataSet();
 	

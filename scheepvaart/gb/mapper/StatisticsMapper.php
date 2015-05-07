@@ -124,6 +124,33 @@ class StatisticsMapper extends Mapper {
         return $ships;
 	}
 	
+	function getNumberOfOrders(){
+		"create view ordersships(shipment_id, ssn, shipbroker_name, price, order_date, route_id, ship_id, departure_date) as select shipment_id, ssn, ship_broker_name, price, order_date, o.route_id, ship_id, departure_date from orders o natural join ships s";
+		"create view routeships(shipment_id, ssn, shipbroker_name, price, order_date, route_id,ship_id, departure_date, to_port_code) as select shipment_id, ssn, shipbroker_name, price, order_date, o.route_id, ship_id, departure_date, to_port_code from ordersships o natural join route r";
+		"create view routetrip(shipment_id, ssn, shipbroker_name, price, order_date, route_id, departure_date, arrival_date, to_port_code) as select shipment_id, ssn, shipbroker_name, price, order_date, r.route_id, r.departure_date, arrival_date, to_port_code from routeships r join trip t on (r.route_id=t.route_id and r.ship_id = t.ship_id and r.departure_date=t.departure_date)";
+		"create view portroute (shipment_id, ssn, shipbroker_name, price, order_date, route_id, departure_date, arrival_date, to_port_code, country_id) as select shipment_id, ssn, shipbroker_name, price, order_date, route_id, departure_date, arrival_date, to_port_code, country_id from routetrip r join port p on port_code=to_port_code";
+		"create view portcountry (shipment_id, ssn, shipbroker_name, price, order_date, route_id, departure_date, arrival_date, to_port_code, country_name) as select shipment_id, ssn, shipbroker_name, price, order_date, route_id, departure_date, arrival_date, to_port_code, country_name from portroute natural join country";
+		$con = $this->getConnectionManager();
+		$selectStmt = "select count(distinct shipment_id) as number_of_orders, shipbroker_name from portcountry group by shipbroker_name order by number_of_orders desc";
+		$numbers = $con->executeSelectStatement($selectStmt, array());        
+        return $numbers;
+		$titleForChart = array("shipbroker_name", "number_unique_clients");
+		 $data[0] = $titleForChart;		
+		for ($i=1; $i<($numbers+1); $i++)
+    {
+        $data[$i] = $numbers[$i-1];
+    }	
+		return $data;
+	}
+	
+	function getTotalPrice(){
+		"create view ordersships(shipment_id, ssn, shipbroker_name, price, order_date, route_id, ship_id, departure_date) as select shipment_id, ssn, ship_broker_name, price, order_date, o.route_id, ship_id, departure_date from orders o natural join ships s";
+		$con = $this->getConnectionManager();
+		$selectStmt = "select sum(price) as totalPrice, shipbroker_name from ordersships";
+		$totalPrice = $con->executeSelectStatement($selectStmt, array());        
+        return $totalPrice;
+	}
+	
 	
 
 }

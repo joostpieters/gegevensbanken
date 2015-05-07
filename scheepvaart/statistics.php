@@ -16,8 +16,8 @@
     
 <table style="width: 100%">
     <tr>
-        <td style="width: 10%"></td>
-        <td style="width: 10%">Ship broker comparison</td>
+        <td style="width: 20%"></td>
+        <td style="width: 20%">Ship broker comparison</td>
         <td style="width: 40%">
             <select style="width: 100%" name="searchCriterium">
 				<option value="1">Number of clients</options>
@@ -26,6 +26,7 @@
 				<option value="4">Number of delivered orders to a country</options>
 				<option value="5">City of the ShipBroker</options>
 				<option value="6">Used ships</options>
+				<option value="7">The amount of recieved money</options>
 					
             </select>
         </td>
@@ -53,8 +54,8 @@ foreach($result as $revenue){
 	
 	?>
        <tr>
-		<td><?php echo $revenue['shipbroker_name']; ?></td>		
-		<td><?php echo $revenue['number_unique_clients']; ?></td>
+		<th><?php echo $revenue['shipbroker_name']; ?></th>		
+		<th><?php echo $revenue['number_unique_clients']; ?></th>
 	</tr>     
 <?php        
 	}
@@ -102,8 +103,8 @@ foreach($result as $revenue){
 	
 	?>
        <tr>
-		<td><?php echo $revenue['shipbroker_name']; ?></td>		
-		<td><?php echo $revenue['average_total_time']; ?></td>
+		<th><?php echo $revenue['shipbroker_name']; ?></th>		
+		<th><?php echo $revenue['average_total_time']; ?></th>
 	</tr>     
 <?php        
 	}
@@ -143,8 +144,8 @@ foreach($result as $revenue){
 	
 	?>
        <tr>
-		<td><?php echo $revenue['shipbroker_name']; ?></td>		
-		<td><?php echo $revenue['average_total_time']; ?></td>
+		<th><?php echo $revenue['shipbroker_name']; ?></th>		
+		<th><?php echo $revenue['average_total_time']; ?></th>
 	</tr>     
 <?php        
 	}
@@ -168,12 +169,12 @@ $result = $mapper->getShipBrokerAdress();
 foreach($result as $revenue){	
 	?>
        <tr>
-		<td><?php echo $revenue['name']; ?></td>	
-		<td><?php echo $revenue['street_of_shipbroker']; ?></td>
-		<td><?php echo $revenue['number_of_shipbroker']; ?></td>
-		<td><?php echo $revenue['bus_of_shipbroker']; ?></td>
-		<td><?php echo $revenue['postal_code_of_shipbroker']; ?></td>			
-		<td><?php echo $revenue['city_of_shipbroker']; ?></td>
+		<th><?php echo $revenue['name']; ?></th>	
+		<th><?php echo $revenue['street_of_shipbroker']; ?></th>
+		<th><?php echo $revenue['number_of_shipbroker']; ?></th>
+		<th><?php echo $revenue['bus_of_shipbroker']; ?></th>
+		<th><?php echo $revenue['postal_code_of_shipbroker']; ?></th>			
+		<th><?php echo $revenue['city_of_shipbroker']; ?></th>
 	</tr>     
 <?php        
 	}
@@ -192,8 +193,29 @@ $result = $mapper->getShips();
 foreach($result as $revenue){	
 	?>
     <tr>
-		<td><?php echo $revenue['shipbroker_name']; ?></td>	
-		<td><?php echo $revenue['number_of_ships']; ?></td>
+		<th><?php echo $revenue['shipbroker_name']; ?></th>	
+		<th><?php echo $revenue['number_of_ships']; ?></th>
+	</tr>     
+<?php        
+	}
+}
+
+if($search=='7'){
+?>
+<tr>
+        <td>Ship broker name</td>
+        <td>Amount of money</td>
+    </tr>
+<?php
+
+$mapper = new gb\mapper\StatisticsMapper();
+$result = $mapper->getTotalPrice();
+
+foreach($result as $revenue){	
+	?>
+    <tr>
+		<th><?php echo $revenue['shipbroker_name']; ?></th>	
+		<th><?php echo $revenue['totalPrice']; ?></th>
 	</tr>     
 <?php        
 	}

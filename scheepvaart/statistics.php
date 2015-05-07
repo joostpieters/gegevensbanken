@@ -69,22 +69,21 @@ if($search=='2'){
 
 $mapper = new gb\mapper\StatisticsMapper();
 $result = $mapper->getNumberOfOrders();
-	$chart = new HorizontalBarChart(800, 500);
+	$chart = new HorizontalBarChart(1200, 500);
 	$dataSet = new XYDataSet();
 	
 foreach($result as $revenue){
 	$dataSet->addPoint(new Point($revenue['shipbroker_name'],$revenue['number_of_orders'] ));
 	}
 	$chart->setDataSet($dataSet);
-	$chart->getPlot()->setGraphPadding(new Padding(5, 30, 20, 140));
+	$chart->getPlot()->setGraphPadding(new Padding(5, 30, 20, 170));
 
 	$chart->setTitle("Amount of orders made by each shipbroker");
 	$chart->render("generated/NumberOrders.png");
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>Barchart test</title>
+	<title>Barchart number of orders</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-15" />
 </head>
 <body>

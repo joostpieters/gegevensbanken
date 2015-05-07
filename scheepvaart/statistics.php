@@ -12,7 +12,7 @@
 	$allShipments = $mapper->findAll();
 	include "libchart-1.3\libchart\libchart\classes\libchart.php";
 ?>
-<form method="post">
+<form name ="form 1"method="post">
     
 <table style="width: 100%">
     <tr>
@@ -23,21 +23,31 @@
 				<option value="1">Number of clients</options>
 				<option value="2">Number of delivered orders</options>
 				<option value="3">The time from order to arrival</options>
-				<option value="4">Number of delivered orders to a country</options>
+				<option value="4">Number of delivered orders to a city</options>
 				<option value="5">City of the ShipBroker</options>
 				<option value="6">Used ships</options>
 				<option value="7">The amount of recieved money</options>
 					
             </select>
         </td>
-        <td style="width: 10%"><input type="submit" value="Select" name="formSubmit"></td>
+        <td style="width: 10%"><input type="submit" value="Select" name="submit"></td>
         <td style="width: 30%"></td>
-    </tr>
+		
+	</form>
+		
+
 
 <?php
-if(isset($_POST['formSubmit']))
+if(isset($_POST['submit']))
 {
 	$search = $_POST['searchCriterium'];
+if($search=='4'){
+		?>
+		
+	<?php
+		}
+		
+	
 if($search=='1'){
 ?>
 <tr>
@@ -91,8 +101,7 @@ foreach($result as $revenue){
 </html>
 <?php
 	}
-?>
-<?php
+	
 if($search=='3'){
 ?>
 <tr>
@@ -114,25 +123,10 @@ foreach($result as $revenue){
 	</tr>     
 <?php        
 	}
-}
-if($search=='4'){
-	require_once( "gb/mapper/CustomerMapper.php" );
-	$mapper = new gb\mapper\CustomerMapper();
-    $allCustomers = $mapper->findAll();
-?>
-<select style="width: 100%" name="country">
-				<?php
-					$countries = array();
-                    foreach($allCustomers as $customer) {
-						if(!in_array($customer->getCity(), $countries)){
-							array_push($countries, $customer->getCity() );
-							echo "<option value=\"", $customer->getCity(), "\">", $customer->getCity(), "</option>" ;
-						}
-                    }
-                    
-                    ?>
-		
+}	
 
+if($search=='4'){
+	header('Location: orders_to_port.php');  
 
 					
             </select>
@@ -156,7 +150,6 @@ foreach($result as $revenue){
 <?php        
 	}
 }
-
 if($search=='5'){
 ?>
 <tr>

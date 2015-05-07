@@ -67,17 +67,29 @@ if($search=='2'){
 $mapper = new gb\mapper\StatisticsMapper();
 $result = $mapper->getNumberOfOrders();
 
-
-$chart = new HorizontalBarChart(500, 170);
-
+	$chart = new HorizontalBarChart(800, 500);
 	$dataSet = new XYDataSet();
-	$dataSet->addPoint(new Point("/wiki/Instant_messenger", 50));
-	$dataSet->addPoint(new Point("/wiki/Web_Browser", 83));
-	$dataSet->addPoint(new Point("/wiki/World_Wide_Web", 142));
+	
+foreach($result as $revenue){
+	$dataSet->addPoint(new Point($revenue['shipbroker_name'],$revenue['number_of_orders'] ));
+	}
 	$chart->setDataSet($dataSet);
+	$chart->getPlot()->setGraphPadding(new Padding(5, 30, 20, 140));
 
-	$chart->setTitle("The number of orders made at every ");
-	$chart->render("generated/numberOrders.png");
+	$chart->setTitle("Amount of orders made by each shipbroker");
+	$chart->render("generated/NumberOrders.png");
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Barchart test</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-15" />
+</head>
+<body>
+	<img alt="Horizontal bars chart"  src="generated/NumberOrders.png" style="border: 1px solid gray;"/>
+</body>
+</html>
+<?php
 	}
 ?>
 <?php

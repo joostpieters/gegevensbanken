@@ -1,0 +1,3 @@
+inkomsten/prijzen
+tables mooi maken
+number of delivered orders to a CITY

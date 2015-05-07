@@ -119,7 +119,7 @@ foreach($result as $revenue){
 
 if($search=='4'){
 	header('Location: orders_to_port.php');  
-
+?>
 					
             </select>
 <tr>

@@ -40,14 +40,7 @@
 <?php
 if(isset($_POST['submit']))
 {
-	$search = $_POST['searchCriterium'];
-if($search=='4'){
-		?>
-		
-	<?php
-		}
-		
-	
+	$search = $_POST['searchCriterium'];	
 if($search=='1'){
 ?>
 <tr>
@@ -116,9 +109,6 @@ $result = $mapper->getNumberOfOrders();
     }
 
 
-<<<<<<< HEAD
-=======
-
 $chart = new HorizontalBarChart(500, 170);
 
 	$dataSet = new XYDataSet();
@@ -129,8 +119,7 @@ $chart = new HorizontalBarChart(500, 170);
 
 	$chart->setTitle("The number of orders made at every ");
 	$chart->render("generated/numberOrders.png");
-	}
->>>>>>> origin/master
+	
 ?>
     </script>
   </head>
@@ -164,33 +153,9 @@ foreach($result as $revenue){
 	}
 }	
 
-<<<<<<< HEAD
+
 if($search=='4'){
-	header('Location: orders_to_port.php');  
-=======
-
-					
-            </select>
-<tr>
-        <td>Ship broker name</td>
-        <td>Number of orders to this city</td>
-    </tr>
-<?php
-
-$mapper = new gb\mapper\StatisticsMapper();
-$result = $mapper->getO();
-
-
-foreach($result as $revenue){
-	
-	?>
-       <tr>
-		<th><?php echo $revenue['shipbroker_name']; ?></th>		
-		<th><?php echo $revenue['average_total_time']; ?></th>
-	</tr>     
-<?php        
-	}
->>>>>>> origin/master
+	header('Location: orders_to_port.php'); 
 }
 if($search=='5'){
 ?>

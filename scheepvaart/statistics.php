@@ -137,13 +137,21 @@ foreach($result as $revenue){
 	}
 }
 if($search=='4'){
+	require_once( "gb/mapper/CustomerMapper.php" );
+	
+	
+
+    //$filterController = new gb\controller\ListCustomerInCityController();
+    //$filterController->process();
+	$mapper = new gb\mapper\CustomerMapper();
+    $allCustomers = $mapper->findAll();
 ?>
 <select style="width: 100%" name="country">
 				<?php
 					$countries = array();
                     foreach($allCustomers as $customer) {
-						if(!in_array($customer->getCity(), $cities)){
-							array_push($cities, $customer->getCity() );
+						if(!in_array($customer->getCity(), $countries)){
+							array_push($countries, $customer->getCity() );
 							echo "<option value=\"", $customer->getCity(), "\">", $customer->getCity(), "</option>" ;
 						}
                     }

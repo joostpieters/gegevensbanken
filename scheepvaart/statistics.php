@@ -42,27 +42,33 @@ if(isset($_POST['submit']))
 {
 	$search = $_POST['searchCriterium'];	
 if($search=='1'){
-?>
-<tr>
-        <td>Ship broker name</td>
-        <td>Number of clients</td>
-    </tr>
-<?php
 
 $mapper = new gb\mapper\StatisticsMapper();
 $result = $mapper->getNumberOfCustomers();
 
-
-foreach($result as $revenue){
+	$chart = new HorizontalBarChart(1200, 500);
+	$dataSet = new XYDataSet();
 	
-	?>
-       <tr>
-		<th><?php echo $revenue['shipbroker_name']; ?></th>		
-		<th><?php echo $revenue['number_unique_clients']; ?></th>
-	</tr>     
+foreach($result as $revenue){
+	$dataSet->addPoint(new Point($revenue['shipbroker_name'],$revenue['number_unique_clients'] ));
+	}
+	$chart->setDataSet($dataSet);
+	$chart->getPlot()->setGraphPadding(new Padding(5, 30, 20, 170));
+
+	$chart->setTitle("Amount of clients of each shipbroker");
+	$chart->render("generated/NumberClients.png");
+?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Barchart number of clients</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-15" />
+</head>
+<body>
+	<img alt="Horizontal bars chart"  src="generated/NumberClients.png" style="border: 1px solid gray;"/>
+</body>
+</html>
 <?php        
 	}
-}
 
 if($search=='2'){
 
@@ -78,7 +84,7 @@ foreach($result as $revenue){
 	$chart->setDataSet($dataSet);
 	$chart->getPlot()->setGraphPadding(new Padding(5, 30, 20, 170));
 
-	$chart->setTitle("Amount of orders made by each shipbroker");
+	$chart->setTitle("Amount of orders made at each shipbroker");
 	$chart->render("generated/NumberOrders.png");
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml">

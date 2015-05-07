@@ -100,27 +100,33 @@ foreach($result as $revenue){
 	}
 	
 if($search=='3'){
-?>
-<tr>
-        <td>Ship broker name</td>
-        <td>Time (in days)</td>
-    </tr>
-<?php
 
 $mapper = new gb\mapper\StatisticsMapper();
 $result = $mapper->getUnderwayTime();
 
-
-foreach($result as $revenue){
+	$chart = new HorizontalBarChart(1200, 500);
+	$dataSet = new XYDataSet();
 	
-	?>
-       <tr>
-		<th><?php echo $revenue['shipbroker_name']; ?></th>		
-		<th><?php echo $revenue['average_total_time']; ?></th>
-	</tr>     
-<?php        
+foreach($result as $revenue){
+	$dataSet->addPoint(new Point($revenue['shipbroker_name'],$revenue['average_total_time'] ));
 	}
-}	
+	$chart->setDataSet($dataSet);
+	$chart->getPlot()->setGraphPadding(new Padding(5, 30, 20, 170));
+
+	$chart->setTitle("Amount of time between order and arrival (in days)");
+	$chart->render("generated/UnderwayTime.png");
+?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Barchart Duration Order Arrival </title>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-15" />
+</head>
+<body>
+	<img alt="Horizontal bars chart"  src="generated/UnderwayTime.png" style="border: 1px solid gray;"/>
+</body>
+</html>
+<?php
+	}	
 
 if($search=='4'){
 	header('Location: orders_to_port.php');  

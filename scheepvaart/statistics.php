@@ -175,7 +175,7 @@ foreach($result as $revenue){
 	$chart->setDataSet($dataSet);
 	$chart->getPlot()->setGraphPadding(new Padding(5, 30, 20, 170));
 
-	$chart->setTitle("Amount of ships in use by the shipbroker (in days)");
+	$chart->setTitle("Amount of ships in use by the shipbroker");
 	$chart->render("generated/ShipsInUse.png");
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -204,7 +204,7 @@ foreach($result as $revenue){
 	$chart->setDataSet($dataSet);
 	$chart->getPlot()->setGraphPadding(new Padding(5, 30, 20, 170));
 
-	$chart->setTitle("Amount of profit earned by the shipbroker (in days)");
+	$chart->setTitle("Amount of profit earned by the shipbroker");
 	$chart->render("generated/MoneyAmount.png");
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml">

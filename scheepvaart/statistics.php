@@ -10,7 +10,7 @@
 	require_once( "gb/mapper/StatisticsMapper.php" );
 	$mapper = new gb\mapper\StatisticsMapper();
 	$allShipments = $mapper->findAll();
-	require_once("phpChart_Lite\conf.php");
+	include "libchart-1.3\libchart\libchart\classes\libchart.php";
 ?>
 <form method="post">
     
@@ -67,23 +67,17 @@ if($search=='2'){
 $mapper = new gb\mapper\StatisticsMapper();
 $result = $mapper->getNumberOfOrders();
 
-?>
-<!DOCTYPE HTML>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>phpChart - Basic Chart</title>
-</head>
-<body>
-    
-<?php
-$pc = new C_PhpChartX(array(array(11, 9, 5, 12, 14)),'basic_chart');
-$pc->draw();
-?>
 
-</body>
-</html>
-<?php
+$chart = new HorizontalBarChart(500, 170);
+
+	$dataSet = new XYDataSet();
+	$dataSet->addPoint(new Point("/wiki/Instant_messenger", 50));
+	$dataSet->addPoint(new Point("/wiki/Web_Browser", 83));
+	$dataSet->addPoint(new Point("/wiki/World_Wide_Web", 142));
+	$chart->setDataSet($dataSet);
+
+	$chart->setTitle("The number of orders made at every ");
+	$chart->render("generated/numberOrders.png");
 	}
 ?>
 <?php

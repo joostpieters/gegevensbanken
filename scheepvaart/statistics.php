@@ -130,18 +130,18 @@ foreach($result as $revenue){
 
 if($search=='4'){
 	header('Location: orders_to_port.php');  
-}
-					
+}				
             
 if($search=='5'){
 ?>
+<table style="width: 100%" border="1">
 <tr>
-        <td>Ship broker name</td>
-        <td>Street</td>
-		<td>Number</td>
-		<td>Bus</td>
-		<td>Postal Code</td>
-		<td>City</td>
+        <th>Ship broker name</th>
+        <th>Street</th>
+		<th>Number</th>
+		<th>Bus</th>
+		<th>Postal Code</th>
+		<th>City</th>
     </tr>
 <?php
 
@@ -151,16 +151,17 @@ $result = $mapper->getShipBrokerAdress();
 foreach($result as $revenue){	
 	?>
        <tr>
-		<th><?php echo $revenue['name']; ?></th>	
-		<th><?php echo $revenue['street_of_shipbroker']; ?></th>
-		<th><?php echo $revenue['number_of_shipbroker']; ?></th>
-		<th><?php echo $revenue['bus_of_shipbroker']; ?></th>
-		<th><?php echo $revenue['postal_code_of_shipbroker']; ?></th>			
-		<th><?php echo $revenue['city_of_shipbroker']; ?></th>
+		<td><?php echo $revenue['name']; ?></td>	
+		<td><?php echo $revenue['street_of_shipbroker']; ?></td>
+		<td><?php echo $revenue['number_of_shipbroker']; ?></td>
+		<td><?php echo $revenue['bus_of_shipbroker']; ?></td>
+		<td><?php echo $revenue['postal_code_of_shipbroker']; ?></td>			
+		<td><?php echo $revenue['city_of_shipbroker']; ?></td>
 	</tr>     
 <?php        
 	}
 }
+
 if($search=='6'){
 
 $mapper = new gb\mapper\StatisticsMapper();

@@ -7,9 +7,6 @@
 	// algemene pagina lay-out en het menu.
 	require("template/top.tpl.php");
 	
-	require_once( "gb/mapper/StatisticsMapper.php" );
-	$mapper = new gb\mapper\StatisticsMapper();
-	$allShipments = $mapper->findAll();
 ?>
 
 <form name ="form2" method="post">

@@ -43,7 +43,7 @@ if(isset($_POST['submit']))
 
 //Check if the first option was selected	
 if($search=='1'){
-//Create a list of the amount of clients of each ship broker.
+//Create a list of the amount of unique clients of each ship broker.
 $mapper = new gb\mapper\StatisticsMapper();
 $result = $mapper->getNumberOfCustomers();
 	//Create a bar chart
@@ -56,13 +56,13 @@ foreach($result as $revenue){
 	//create a .png image of the chart
 	$chart->setDataSet($dataSet);
 	$chart->getPlot()->setGraphPadding(new Padding(5, 30, 20, 170));
-	$chart->setTitle("Amount of clients of each ship broker");
+	$chart->setTitle("Amount of unique clients of each ship broker");
 	$chart->render("generated/NumberClients.png");
 ?>
 <?php//display the chart?>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>Barchart number of clients</title>
+	<title>Barchart number of unique clients</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-15" />
 </head>
 <body>

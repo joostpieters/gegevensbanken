@@ -6,6 +6,7 @@
 	// Voer de inhoud van "top.inc.php" uit. Deze verzorgt de
 	// algemene pagina lay-out en het menu.
 	require("template/top.tpl.php");
+	require_once( "gb/mapper/StatisticsMapper.php" );
 	//include the chart drawing classes
 	include "libchart-1.3\libchart\libchart\classes\libchart.php";
 ?>

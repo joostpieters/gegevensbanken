@@ -146,13 +146,14 @@ if($search=='4'){
 //Check if the fifth option was selected	          
 if($search=='5'){
 ?>
+<table style="width: 100%" border="1">
 <tr>
-        <td>Ship broker name</td>
-        <td>Street</td>
-		<td>Number</td>
-		<td>Bus</td>
-		<td>Postal Code</td>
-		<td>City</td>
+        <th>Ship broker name</th>
+        <th>Street</th>
+		<th>Number</th>
+		<th>Bus</th>
+		<th>Postal Code</th>
+		<th>City</th>
     </tr>
 <?php
 //Create a list of the addresses of each ship broker
@@ -162,12 +163,12 @@ $result = $mapper->getShipBrokerAdress();
 foreach($result as $revenue){	
 	?>
        <tr>
-		<th><?php echo $revenue['name']; ?></th>	
-		<th><?php echo $revenue['street_of_shipbroker']; ?></th>
-		<th><?php echo $revenue['number_of_shipbroker']; ?></th>
-		<th><?php echo $revenue['bus_of_shipbroker']; ?></th>
-		<th><?php echo $revenue['postal_code_of_shipbroker']; ?></th>			
-		<th><?php echo $revenue['city_of_shipbroker']; ?></th>
+		<td><?php echo $revenue['name']; ?></td>	
+		<td><?php echo $revenue['street_of_shipbroker']; ?></td>
+		<td><?php echo $revenue['number_of_shipbroker']; ?></td>
+		<td><?php echo $revenue['bus_of_shipbroker']; ?></td>
+		<td><?php echo $revenue['postal_code_of_shipbroker']; ?></td>			
+		<td><?php echo $revenue['city_of_shipbroker']; ?></td>
 	</tr>     
 <?php        
 	}

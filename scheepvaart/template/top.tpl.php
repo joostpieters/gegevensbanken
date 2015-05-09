@@ -7,6 +7,16 @@ session_start(); 		// -- session_start() op deze plek is niet erg netjes, maar v
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="nl-BE" lang="nl-BE">
 <head>
+	<style>
+		table, th, td {
+		background-color: #f1f1c1;
+		border: 1px solid black;
+		border-collapse: collapse;
+		}
+		th, td {
+			padding: 10px;
+		}
+	</style>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<?php // s ?>
 	<title><?php print $title;?></title>

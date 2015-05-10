@@ -8,9 +8,10 @@ session_start(); 		// -- session_start() op deze plek is niet erg netjes, maar v
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="nl-BE" lang="nl-BE">
 <head>
 	<style>
+		<!--the style of the the table is adapted-->
 		table, th, td {
 		background-color: #f1f1c1;
-		border: 1px solid black;
+		border: 1px black
 		border-collapse: collapse;
 		}
 		th, td {

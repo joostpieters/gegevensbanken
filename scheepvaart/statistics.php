@@ -47,7 +47,7 @@ if($search=='1'){
 $mapper = new gb\mapper\StatisticsMapper();
 $result = $mapper->getNumberOfCustomers();
 	//Create a bar chart
-	$chart = new HorizontalBarChart(1200, 500);
+	$chart = new HorizontalBarChart(1100, 500);
 	$dataSet = new XYDataSet();
 //Add all bars to the chart
 foreach($result as $revenue){
@@ -79,7 +79,7 @@ if($search=='2'){
 $mapper = new gb\mapper\StatisticsMapper();
 $result = $mapper->getNumberOfOrders();
 	//Create a bar chart
-	$chart = new HorizontalBarChart(1200, 500);
+	$chart = new HorizontalBarChart(1100, 500);
 	$dataSet = new XYDataSet();
 //Add all bars to the chart
 foreach($result as $revenue){
@@ -111,7 +111,7 @@ if($search=='3'){
 $mapper = new gb\mapper\StatisticsMapper();
 $result = $mapper->getUnderwayTime();
 	//Create a bar chart
-	$chart = new HorizontalBarChart(1200, 500);
+	$chart = new HorizontalBarChart(1100, 500);
 	$dataSet = new XYDataSet();
 //Add all bars to the chart
 foreach($result as $revenue){
@@ -182,7 +182,7 @@ if($search=='6'){
 $mapper = new gb\mapper\StatisticsMapper();
 $result = $mapper->getShips();
 	//Create a bar chart
-	$chart = new HorizontalBarChart(1200, 500);
+	$chart = new HorizontalBarChart(1100, 500);
 	$dataSet = new XYDataSet();
 //Add all bars to the chart	
 foreach($result as $revenue){
@@ -214,7 +214,7 @@ if($search=='7'){
 $mapper = new gb\mapper\StatisticsMapper();
 $result = $mapper->getTotalPrice();
 	//Create a bar chart
-	$chart = new HorizontalBarChart(1200, 500);
+	$chart = new HorizontalBarChart(1100, 500);
 	$dataSet = new XYDataSet();
 //Add all bars to the chart
 foreach($result as $revenue){
